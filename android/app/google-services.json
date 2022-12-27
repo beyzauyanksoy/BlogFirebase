@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "788537670728",
+    "project_id": "fir-ornek-a6a89",
+    "storage_bucket": "fir-ornek-a6a89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788537670728:android:87d5c25a110e7aba4bec7d",
+        "android_client_info": {
+          "package_name": "com.example.firebase_uygulama"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788537670728-d8a1l917360p4tcpj12a1g71ka12rebi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDylPWxj9WWutUToecimY_awXIFaULD3x0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788537670728-d8a1l917360p4tcpj12a1g71ka12rebi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

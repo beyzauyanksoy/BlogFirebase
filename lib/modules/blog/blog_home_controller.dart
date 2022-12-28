@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_uygulama/shared/service/analytics_service.dart';
 import 'package:firebase_uygulama/shared/service/firestore_service.dart';
@@ -9,9 +11,9 @@ class BlogHomeController extends GetxController {
   FireStoreService auth = FireStoreService();
   String? databaslik;
   String? dataicerik;
-  List<dynamic> liste = [];
- 
-  AnalyticsService analyticsService =Get.find();
+  List<QueryDocumentSnapshot<Map<String, dynamic>>> liste = [];
+
+  AnalyticsService analyticsService = Get.find();
   @override
   void onInit() {
     getData();
@@ -19,30 +21,22 @@ class BlogHomeController extends GetxController {
     super.onInit();
   }
 
-  var data;
 
   getData() async {
-    // liste.clear();   
-    //  data = await auth.getCollection();
+    liste.clear();
+    await db.collection("yazilar").get().then(
+          (value) => {
+            value.docs.forEach((element) {
+              liste.add(element);
+            })
+          },
+        );
 
-    // print(data);
-    // print(data["baslik"]);
-    // print(data["icerik"]);
-    // databaslik = data["baslik"];
-    // dataicerik = data["icerik"];
-    // data = await db.collection("yazilar").doc("yazi1").get();
-    db.collection("yazilar").snapshots().listen((event) {
-      for (var element in event.docs) {
-        liste.add(element);
-        update();
-      }
-      print("aaaaaaaaaaaaaa ${liste}");
-    });
     update();
   }
 
-  deleteItem(String id) {
-    FirebaseFirestore.instance.collection("yazilar").doc(id).delete();
+  deleteItem(String id) async {
+    await FirebaseFirestore.instance.collection("yazilar").doc(id).delete();
     update();
   }
 }

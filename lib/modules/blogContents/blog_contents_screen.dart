@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
+import '../blog/blog_home_controller.dart';
 import 'blog_contents_controller.dart';
 
 class BlogContents extends GetView<BlogContentsController> {
@@ -17,7 +18,7 @@ class BlogContents extends GetView<BlogContentsController> {
           child: Column(
             children: [
               TextFormField(
-            controller: controller.title,
+                controller: controller.title,
                 decoration: InputDecoration(
                     hintText: "Başlık",
                     hintStyle: TextStyle(color: Colors.red.shade300),
@@ -38,9 +39,16 @@ class BlogContents extends GetView<BlogContentsController> {
                       border: InputBorder.none),
                 ),
               ),
-              ElevatedButton(onPressed: () {
-                  controller.auth.addContents(controller.title.text, controller.contents.text);
-              }, child: Text("Gönder"))
+              ElevatedButton(
+                  onPressed: () async {
+                    await controller.auth.addContents(
+                      controller.title.text,
+                      controller.contents.text,
+                    );
+
+                    controller.blogHomeController.getData();
+                  },
+                  child: Text("Gönder"))
             ],
           ),
         ));

@@ -21,8 +21,8 @@ class FireStoreService extends GetxService {
     return await db.collection("yazilar").doc("yazi1").get();
   }
 
- void addContents(title, content) {
-     yazilar
+  addContents(title, content) async{
+    await yazilar
         .add({
           'baslik': title,
           'icerik': content,

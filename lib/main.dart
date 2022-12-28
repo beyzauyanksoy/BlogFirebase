@@ -3,9 +3,6 @@ import 'package:firebase_uygulama/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'modules/login/home_screen.dart';
-import 'modules/login/login_binding.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DenpendencyInjection.init();
@@ -27,7 +24,7 @@ class MyApp extends StatelessWidget {
       //home: HomePage(),
       initialRoute: Routes.LOGIN,
       getPages: AppPages.routes,
-     // initialBinding: LoginBinding(),
+      // initialBinding: LoginBinding(),
     );
   }
 }

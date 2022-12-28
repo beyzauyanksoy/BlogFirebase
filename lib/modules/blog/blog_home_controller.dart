@@ -22,14 +22,14 @@ class BlogHomeController extends GetxController {
   var data;
 
   getData() async {
-    liste.clear();   
-     data = await auth.getCollection();
+    // liste.clear();   
+    //  data = await auth.getCollection();
 
-    print(data);
-    print(data["baslik"]);
-    print(data["icerik"]);
-    databaslik = data["baslik"];
-    dataicerik = data["icerik"];
+    // print(data);
+    // print(data["baslik"]);
+    // print(data["icerik"]);
+    // databaslik = data["baslik"];
+    // dataicerik = data["icerik"];
     // data = await db.collection("yazilar").doc("yazi1").get();
     db.collection("yazilar").snapshots().listen((event) {
       for (var element in event.docs) {

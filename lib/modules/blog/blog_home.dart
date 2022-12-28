@@ -151,22 +151,27 @@ class BlogHome extends GetView<BlogHomeController> {
                                const SizedBox(
                                 height: 15,
                               ),
-                              Container(
-                                child: const Center(
-                                    child: Text(
-                                  "Read more",
-                                  //"${controller.data?["icerik"]}",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
+                              GestureDetector(
+                                onTap: () {
+                             controller.deleteItem(controller.liste[index].id);
+                                },
+                                child: Container(
+                                  child: const Center(
+                                      child: Text(
+                                    "Read more",
+                                    //"${controller.data?["icerik"]}",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  )),
+                                  width: 344,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5.39),
+                                    color: const Color(0xff171717),
                                   ),
-                                )),
-                                width: 344,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5.39),
-                                  color: const Color(0xff171717),
                                 ),
                               )
                             ],
@@ -178,7 +183,7 @@ class BlogHome extends GetView<BlogHomeController> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                  //  print(controller.data?["icerik"]);
+                  controller.analyticsService.logEvent();
                   },
                   child: const Text("veri getir"),
                 ),

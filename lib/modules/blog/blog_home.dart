@@ -12,7 +12,6 @@ class BlogHome extends GetView<BlogHomeController> {
 
   @override
   Widget build(BuildContext context) {
-    
     return GetBuilder<BlogHomeController>(builder: (controller) {
       return Scaffold(
         backgroundColor: Color(0xffECECEC),
@@ -34,36 +33,52 @@ class BlogHome extends GetView<BlogHomeController> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(
+                    top: 20,
+                  ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
                         width: 250,
                         height: 42,
                         child: TextFormField(
                           decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Colors.white, width: 2.0),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                  color: Colors.white, width: 2.0),
+                            ),
                             hintText: "Search",
-                            hintStyle: TextStyle(color: Color(0xffC8C8C8)),
+                            hintStyle: TextStyle(
+                              color: Color(0xffC8C8C8),
+                            ),
                             border: InputBorder.none,
                             filled: true,
-                            fillColor: Color(0xfff7f7f7),
+                            fillColor: Colors.white,
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        width: 25,
                       ),
                       Container(
                         child: Image.asset("assets/Filter.png"),
                         width: 51,
                         height: 42,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: Color(0xfff7f7f7),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
                         ),
                       )
                     ],
                   ),
                 ),
-              
                 ListView.builder(
                   itemCount: controller.liste.length,
                   shrinkWrap: true,
@@ -140,32 +155,41 @@ class BlogHome extends GetView<BlogHomeController> {
                                   height: 1,
                                 ),
                               ),
-                               Text(
-                                  controller.liste[index]["icerik"]!.toString(),
+                              Text(
+                                controller.liste[index]["icerik"]!.toString(),
                                 style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w300,
                                 ),
-                              ), 
-                               const SizedBox(
+                              ),
+                              const SizedBox(
                                 height: 15,
                               ),
                               GestureDetector(
                                 onTap: () {
-                             controller.deleteItem(controller.liste[index].id);
+                                  controller
+                                      .deleteItem(controller.liste[index].id);
+                                      controller.onInit();
+
                                 },
                                 child: Container(
-                                  child: const Center(
-                                      child: Text(
-                                    "Read more",
-                                    //"${controller.data?["icerik"]}",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  )),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Delete",
+                                        //"${controller.data?["icerik"]}",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      SizedBox(width: 5,),
+                                      Image.asset("assets/delete.png",color: Colors.white,width: 20,)
+                                    ],
+                                  ),
                                   width: 344,
                                   height: 40,
                                   decoration: BoxDecoration(
@@ -181,22 +205,22 @@ class BlogHome extends GetView<BlogHomeController> {
                     );
                   },
                 ),
-                ElevatedButton(
-                  onPressed: () async {
-                  controller.analyticsService.logEvent();
-                  },
-                  child: const Text("veri getir"),
-                ),
+                // ElevatedButton(
+                //   onPressed: () async {
+                //     controller.analyticsService.logEvent();
+                //   },
+                //   child: const Text("veri getir"),
+                // ),
               ],
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(onPressed: () {
-         Get.toNamed(Routes.CONTENTS);
-        },
-        child: Icon(Icons.pending),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.toNamed(Routes.CONTENTS);
+          },
+          child: Icon(Icons.pending),
         ),
-
       );
     });
   }
